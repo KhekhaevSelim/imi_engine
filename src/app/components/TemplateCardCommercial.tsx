@@ -73,7 +73,7 @@ export default function TemplateCardCommercial() {
                         {
                         fakeTemplateItems["commercial"].map(item => {
                             return (
-                                <div className='flex xl:w-[254px] xl:h-[63px] lg:w-[207px] lg:h-[59px] items-center cursor-pointer
+                                <div key={item.id} className='flex xl:w-[254px] xl:h-[63px] lg:w-[207px] lg:h-[59px] items-center cursor-pointer
                                                 md:h-[36px] md:items-center md:w-full md:sm:h-[54.5px]'>
                                     <Image src={item.src} alt={item.id} width={22} height={22} className="mr-[12px]"/>
                                     <span className="font-normal leading-[19px] TTNormsRegular xl:text-[16px] lg:text-[14px] text-template-card-item-text-lite
@@ -100,7 +100,7 @@ export default function TemplateCardCommercial() {
                         return (
                             <div className='flex xl:w-[254px] xl:h-[63px] lg:w-[207px] lg:h-[59px] items-center cursor-pointer
                                             md:h-[36px] md:items-center md:w-full'>
-                                <Image src={theme === "lite" ? item.src : item.srcDark ? item.srcDark : ""} alt={item.id} width={22} height={22} className="mr-[12px]"/>
+                                <Image src={ theme === "light" ? item.src : theme === "dark" ? item.srcDark : "ss" } alt={item.id} width={22} height={22} className="mr-[12px]"/>
                                 <span className="font-normal leading-[19px] TTNormsRegular xl:text-[16px] lg:text-[14px] text-template-card-item-text-lite
                                                 dark:text-template-card-item-text-dark md:text-[14px]">{item.title}</span>
                             </div>

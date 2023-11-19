@@ -12,7 +12,7 @@ export default function Header() {
     const [activeButton, setActiveButton] = useState<string>('templates');
     const { theme,setTheme } = useTheme();
     const handleTheme = () => {
-        theme === "dark" ? setTheme("lite") : setTheme("dark")
+        theme === "dark" ? setTheme("light") : setTheme("dark")
     }
     const chooseActiveButton = (template : string) => {
         setActiveButton(template)

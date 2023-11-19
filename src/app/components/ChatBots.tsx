@@ -1,19 +1,20 @@
 import Icon from '../components/Icon';
 import Image from "next/image";
-import consultant from "../../../public/consultant.svg";
-import marketolog from "../../../public/marketolog.svg";
-import writer from "../../../public/writer.svg";
-import business from "../../../public/business.svg"; 
-import investor from "../../../public/investor.svg";
-import seo from "../../../public/seo.svg";
-import fitnes from "../../../public/fitnes.svg";
-import consultantDark from "../../../public/consultantDark.svg";
-import marketologDark from "../../../public/marketologDark.svg";
-import writerDark from "../../../public/writerDark.svg";
-import businessDark from "../../../public/businessDark.svg";
-import investorDark from "../../../public/investorDark.svg";
-import seoDark from "../../../public/seoDark.svg";
-import fitnesDark from "../../../public/fitnesDark.svg";
+import consultant from "../../../public/consultant.png";
+import marketolog from "../../../public/marketolog.png";
+import writer from "../../../public/writer.png"; 
+import business from "../../../public/business.png"; 
+import investor from "../../../public/investor.png";
+import seo from "../../../public/seo.png";
+import fitnes from "../../../public/fitnes.png";
+import consultantDark from "../../../public/consultantDark.png";
+import marketologDark from "../../../public/marketologDark.png";
+import writerDark from "../../../public/writerDark.png";
+import businessDark from "../../../public/businessDark.png";
+import investorDark from "../../../public/investorDark.png";
+import seoDark from "../../../public/seoDark.png";
+import fitnesDark from "../../../public/fitnesDark.png";
+import chatBotsMask from "../../../public/chatBotsMask.svg";
 import { useEffect, useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
 
@@ -33,17 +34,18 @@ export default function ChatBots () {
         id : string
         srcLite : string
         srcDark : string
+        title : string
       }
     const fakeRolesData : Array<FakeRolesDataType> = [
-        { id : "consultant", srcLite : consultant, srcDark : consultantDark },
-        { id : "marketolog", srcLite : marketolog , srcDark : marketologDark },
-        { id : "writer", srcLite : writer, srcDark : writerDark },
-        { id : "business", srcLite : business, srcDark : businessDark},
-        { id : "investor", srcLite : investor, srcDark : investorDark },
-        { id : "seo", srcLite : seo , srcDark : seoDark},
-        { id : "fitnes", srcLite : fitnes , srcDark : fitnesDark},
-        { id : "consultant", srcLite : consultant, srcDark : consultantDark},
-        { id : "marketolog", srcLite : marketolog, srcDark : marketologDark },
+        { id : "consultant", srcLite : consultant, srcDark : consultantDark, title : "Личный консультант" },
+        { id : "marketolog", srcLite : marketolog , srcDark : marketologDark, title : "Маркетолог" },
+        { id : "writer", srcLite : writer, srcDark : writerDark , title : "Писатель"},
+        { id : "business", srcLite : business, srcDark : businessDark, title : "Бизнес ангел"},
+        { id : "investor", srcLite : investor, srcDark : investorDark , title : "Инвестор"},
+        { id : "seo", srcLite : seo , srcDark : seoDark, title : "SEO специалист"},
+        { id : "fitnes", srcLite : fitnes , srcDark : fitnesDark, title : "Фитнес специалист"},
+        { id : "consultant", srcLite : consultant, srcDark : consultantDark,  title : "Личный консультант" },
+        { id : "marketolog", srcLite : marketolog, srcDark : marketologDark ,  title : "Маркетолог"},
       ]
 
     const scrollRight = () => {
@@ -92,6 +94,7 @@ export default function ChatBots () {
       
       useEffect(() => {
         const updateScreenWidth = () => {
+  
           const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
           setScreenWidth(width);
         };
@@ -100,13 +103,14 @@ export default function ChatBots () {
         return () => {
           window.removeEventListener('resize', updateScreenWidth);
         };
+       
       }, []); 
-    
+  
     return (
         <div className='w-full h-[150px] xl:my-[32px] lg:my-[24px] flex md:my-[24px] md:pl-[20px] md:pr-[0px] md:h-[130px] 
                         md:vsm:pl-[16px] vsm:flex-col md:vsm:h-[158px] md:vsm:my-[16px]'>
           
-            <div className='relative w-[191px] mr-[6px] md:w-[129.8px] vsm:hidden'>
+            <div className='relative w-[191px] mr-[7px] md:w-[129.8px] vsm:hidden'>
                 <Icon icon='roleDescription'/>
                 <Icon icon='roleDescriptionAI'/>
                 <span className='text-[#fff] font-NeueMachinaBold text-[12px] absolute top-[32px] left-[38px] md:top-[26px] md:left-[23px]'>AI</span>
@@ -123,7 +127,7 @@ export default function ChatBots () {
               <span className='vsm:inline text-heading-text-lite dark:text-heading-text-dark font-InterBold text-[16px] 
                                vsm:relative vsm:bottom-[20px] vsm:left-[22px]'>Чат с ботом профи :</span>
             </div>
-            <div className='w-[85%] h-[150px] flex overflow-x-auto vsm:w-[100%]'
+            <div className='w-[84%] h-[150px] flex overflow-x-auto vsm:w-[100%]'
                  style={{ scrollBehavior: "smooth", overflowY: "hidden", scrollbarWidth: "thin",userSelect: "none"}}
                  id="scrollContainer"  
                  ref={scrollContainerRef}
@@ -137,10 +141,27 @@ export default function ChatBots () {
             && 
             fakeRolesData.map(item => {
                 return (
-        
-                <Image key={item.id} src={ theme === "lite" ? item.srcLite : item.srcDark} alt={item.id} className='mx-[6px] cursor-pointer md:mx-[4px]' 
+                // <div className='lg:mx-[6.5px] cursor-pointer w-[124px] h-full md:mx-[4px]' 
+                //      style={{height : (screenWidth < 980) && (screenWidth > 549) ? "132px" : screenWidth < 549 ? "120px" : "150px",
+                //             width : (screenWidth < 980) && (screenWidth > 549) ? "110px" : screenWidth < 549 ? "100px" : "124px"}}>
+                //     <Image key={item.id} src={ theme === "light" ?  item.srcLite : theme === "dark" ? item.srcDark : "ss"} alt={item.id} className='' 
+                //        width={(screenWidth < 980) && (screenWidth > 549) ? 110 : screenWidth < 549 ? 100 : 124} 
+                //        style={{height : (screenWidth < 980) && (screenWidth > 549) ? "132px" : screenWidth < 549 ? "120px" : "150px",  maxWidth: 'max-content'}} draggable={false}/>
+                //     <span className='text-heading-text-lite dark:text-heading-text-dark font-TTNormsMedium relative h-[50px] flex justify-center items-end text-center 
+                //                       z-20 leading-[19px] 
+                //                       lg:bottom-[65px] lg:left-[0px] lg:text-[16px] 
+                //                       md:text-[12px] md:bottom-[65px] md:left-[0px] 
+                //                       md:vsm:bottom-[55px]' >
+                //       {item.title}
+                //     </span>
+                //     <Image src={chatBotsMask} alt='mask' className='relative 
+                //         lg:bottom-[203px] 
+                //         md:bottom-[188px]
+                //         md:vsm:bottom-[178px]'/>
+                // </div>
+                <Image key={item.id} src={ theme === "light" ?  item.srcLite : theme === "dark" ? item.srcDark : "ss"} alt={item.id} className='mx-[6.5px] cursor-pointer md:mx-[4px]' 
                        width={(screenWidth < 980) && (screenWidth > 549) ? 110 : screenWidth < 549 ? 100 : 124} style={{height : (screenWidth < 980) && (screenWidth > 549) ? "132px" : screenWidth < 549 ? "120px" : "150px"}} draggable={false}/>
-       
+         
                 )
             }) 
             }

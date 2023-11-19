@@ -57,7 +57,7 @@ export default function TemplateCardSocial() {
                     {
                     fakeTemplateItems["social"].map(item => {
                         return (
-                            <div className='flex xl:w-[280px] xl:h-[46px] lg:w-[206px] lg:h-[42px] xl:items-start lg:items-center cursor-pointer md:h-[39px]
+                            <div  key={item.id} className='flex xl:w-[280px] xl:h-[46px] lg:w-[206px] lg:h-[42px] xl:items-start lg:items-center cursor-pointer md:h-[39px]
                                             md:items-center md:w-1/3 md:sm:w-full'>
                                 <Image src={item.src} alt={item.id} width={22} height={22} className="mr-[12px]"/>
                                 <span className="TTNormsRegular  font-normal xl:text-[16px] lg:text-[14px] text-template-card-item-text-lite 

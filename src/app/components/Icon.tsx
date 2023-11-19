@@ -281,7 +281,7 @@ export default function Icon (props : IconPropsType){
         <path d="M7.5 15L12.5 10L7.5 5" stroke="#2D384B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
     case "roleDescription" :
-        return theme === "lite" 
+        return theme === "light" 
         ? 
         screenWidth <= 979 ?
         <svg width="128" height="130" viewBox="0 0 128 130" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -327,7 +327,7 @@ export default function Icon (props : IconPropsType){
         </svg> 
         </div>
     case "arrow-l-60" :
-        return theme === "lite" ?
+        return theme === "light" ?
         screenWidth <= 1280 && screenWidth >= 980 ? 
             <svg width="55" height="69" viewBox="0 0 55 69" fill="none" xmlns="http://www.w3.org/2000/svg" className="cursor-pointer" onClick={props.callBack}>
                 <path d="M0 20C0 8.9543 8.95431 0 20 0H35C46.0457 0 55 8.9543 55 20V49C55 60.0457 46.0457 69 35 69H20C8.95431 69 0 60.0457 0 49V20Z" fill="white"/>
@@ -366,7 +366,7 @@ export default function Icon (props : IconPropsType){
         </svg>
 
     case "arrow-r-60" :
-        return theme === "lite" ?
+        return theme === "light" ?
         screenWidth <= 1280 && screenWidth >= 980 ?  
         <svg width="55" height="69" viewBox="0 0 55 69" fill="none" xmlns="http://www.w3.org/2000/svg" className="cursor-pointer" onClick={props.callBack}>
             <path d="M0 20C0 8.9543 8.95431 0 20 0H35C46.0457 0 55 8.9543 55 20V49C55 60.0457 46.0457 69 35 69H20C8.95431 69 0 60.0457 0 49V20Z" fill="white" opacity={props.isActive ? "1" : "0.5"}/>
