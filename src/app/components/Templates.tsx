@@ -47,7 +47,7 @@ export default function Templates() {
         }
       });
     return (
-      <div className='w-full h-[32px] mt-[16px] relative md:pl-[20px] md:vsm:pl-[16px]' style={{overflow : "hidden", userSelect: "none"}}>
+      <div className='w-full h-[32px] mt-[16px] relative md:h-[34px] md:pl-[20px] md:vsm:pl-[16px]' style={{overflow : "hidden", userSelect: "none"}}>
           <div onMouseLeave={dragStop} >
             <ScrollMenu
               LeftArrow={LeftArrowTemplates}
