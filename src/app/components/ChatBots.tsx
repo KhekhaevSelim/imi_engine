@@ -127,7 +127,7 @@ export default function ChatBots () {
               <span className='vsm:inline text-heading-text-lite dark:text-heading-text-dark font-InterBold text-[16px] 
                                vsm:relative vsm:bottom-[20px] vsm:left-[22px]'>Чат с ботом профи :</span>
             </div>
-            <div className='w-[84%] h-[150px] flex overflow-x-auto vsm:w-[100%]'
+            <div className='w-[85%] h-[150px] flex overflow-x-auto vsm:w-[100%]'
                  style={{ scrollBehavior: "smooth", overflowY: "hidden", scrollbarWidth: "thin",userSelect: "none"}}
                  id="scrollContainer"  
                  ref={scrollContainerRef}
@@ -139,35 +139,20 @@ export default function ChatBots () {
             {
             fakeRolesData.length 
             && 
-            fakeRolesData.map(item => {
+            fakeRolesData.map((item,i) => {
+              const isLastElement = i === fakeRolesData.length - 1;
+              const marginRightStyleFull = isLastElement ? '0px' : '6.5px';
                 return (
-                // <div className='lg:mx-[6.5px] cursor-pointer w-[124px] h-full md:mx-[4px]' 
-                //      style={{height : (screenWidth < 980) && (screenWidth > 549) ? "132px" : screenWidth < 549 ? "120px" : "150px",
-                //             width : (screenWidth < 980) && (screenWidth > 549) ? "110px" : screenWidth < 549 ? "100px" : "124px"}}>
-                //     <Image key={item.id} src={ theme === "light" ?  item.srcLite : theme === "dark" ? item.srcDark : "ss"} alt={item.id} className='' 
-                //        width={(screenWidth < 980) && (screenWidth > 549) ? 110 : screenWidth < 549 ? 100 : 124} 
-                //        style={{height : (screenWidth < 980) && (screenWidth > 549) ? "132px" : screenWidth < 549 ? "120px" : "150px",  maxWidth: 'max-content'}} draggable={false}/>
-                //     <span className='text-heading-text-lite dark:text-heading-text-dark font-TTNormsMedium relative h-[50px] flex justify-center items-end text-center 
-                //                       z-20 leading-[19px] 
-                //                       lg:bottom-[65px] lg:left-[0px] lg:text-[16px] 
-                //                       md:text-[12px] md:bottom-[65px] md:left-[0px] 
-                //                       md:vsm:bottom-[55px]' >
-                //       {item.title}
-                //     </span>
-                //     <Image src={chatBotsMask} alt='mask' className='relative 
-                //         lg:bottom-[203px] 
-                //         md:bottom-[188px]
-                //         md:vsm:bottom-[178px]'/>
-                // </div>
-                <Image key={item.id} src={ theme === "light" ?  item.srcLite : theme === "dark" ? item.srcDark : "ss"} alt={item.id} className='mx-[6.5px] cursor-pointer md:mx-[4px]' 
-                       width={(screenWidth < 980) && (screenWidth > 549) ? 110 : screenWidth < 549 ? 100 : 124} style={{height : (screenWidth < 980) && (screenWidth > 549) ? "132px" : screenWidth < 549 ? "120px" : "150px"}} draggable={false}/>
+                <Image key={item.id} src={ theme === "light" ?  item.srcLite : theme === "dark" ? item.srcDark : "ss"} alt={item.id} className={`ml-[6.5px] mr-[${marginRightStyleFull}] cursor-pointer md:mx-[4px]`} 
+                       width={(screenWidth < 980) && (screenWidth > 549) ? 110 : screenWidth < 549 ? 100 : 124} 
+                       style={{height : (screenWidth < 980) && (screenWidth > 549) ? "132px" : screenWidth < 549 ? "120px" : "150px"}} draggable={false}/>
          
                 )
             }) 
             }
                
             </div> 
-            <div className='xl:w-[60px] h-[145px] flex flex-col ml-[6px] bg-bg-lite dark:bg-bg-dark justify-between relative right-[5px] md:hidden'>
+            <div className='xl:w-[60px] h-[145px] flex flex-col ml-[17px] bg-bg-lite dark:bg-bg-dark justify-between relative right-[5px] md:hidden'>
                     <Icon icon='arrow-l-60' callBack={scrollLeft} isActive={scrollLeftValue > 0}/>
                     <Icon icon='arrow-r-60' callBack={scrollRight} isActive={scrollLeftValue < scrollWidth}/>
             </div>
