@@ -1,5 +1,4 @@
 import Icon from '../components/Icon';
-import Image from "next/image";
 import consultant from "../../../public/consultant.png";
 import marketolog from "../../../public/marketolog.png";
 import writer from "../../../public/writer.png"; 
@@ -14,22 +13,27 @@ import businessDark from "../../../public/businessDark.png";
 import investorDark from "../../../public/investorDark.png";
 import seoDark from "../../../public/seoDark.png";
 import fitnesDark from "../../../public/fitnesDark.png";
-import chatBotsMask from "../../../public/chatBotsMask.svg";
-import { useEffect, useRef, useState } from 'react';
 import { useTheme } from 'next-themes';
+import { ScrollMenu, VisibilityContext } from "react-horizontal-scrolling-menu";
+import "react-horizontal-scrolling-menu/dist/styles.css";
+import {CustomArrowChatBot} from "./horizontalScrolling/Arrows";
+import {ChatBotCard} from "./horizontalScrolling/ChatBotCard";
+import useDrag from './horizontalScrolling/useDrag';
+import React from 'react';
 
+type scrollVisibilityApiType = React.ContextType<typeof VisibilityContext>;
 
+const elemPrefix = "test";
 export default function ChatBots () {
-    const scrollContainerRef = useRef<HTMLDivElement | null>(null);
-    const [scrollLeftValue, setScrollLeftValue] = useState<number>(0);
-    const [scrollWidth,  setScrollWidth] = useState<number>(0);
-    const [isDragging, setIsDragging] = useState<boolean>(false);
-    const [startX, setStartX] = useState<number>(0);
-    const [scrollLeftAtStart, setScrollLeftAtStart] = useState<number>(0);
     const {theme} = useTheme();
-    const [screenWidth, setScreenWidth] = useState<number>(0);
-  
-    
+    const { dragStart, dragStop, dragMove, dragging } = useDrag();
+    const handleDrag = ({ scrollContainer }: scrollVisibilityApiType) => 
+    ( ev: React.MouseEvent ) =>
+      dragMove(ev, (posDiff) => {
+        if (scrollContainer.current) {
+          scrollContainer.current.scrollLeft += posDiff;
+        }
+      });
     type FakeRolesDataType = {
         id : string
         srcLite : string
@@ -47,64 +51,6 @@ export default function ChatBots () {
         { id : "consultant", srcLite : consultant, srcDark : consultantDark,  title : "Личный консультант" },
         { id : "marketolog", srcLite : marketolog, srcDark : marketologDark ,  title : "Маркетолог"},
       ]
-
-    const scrollRight = () => {
-        if (scrollContainerRef.current) {
-          scrollContainerRef.current.scrollLeft = scrollContainerRef.current.scrollWidth;
-          setScrollLeftValue(scrollContainerRef.current.scrollWidth);
-        }
-      };
-    
-    const scrollLeft = () => {
-        if (scrollContainerRef.current) {
-          scrollContainerRef.current.scrollLeft = 0;
-          setScrollLeftValue(0);
-        }
-      };
-  
-    const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
-        if(scrollContainerRef.current){
-              setIsDragging(true);
-              setStartX(e.pageX - scrollContainerRef.current?.offsetLeft);
-              setScrollLeftAtStart(scrollContainerRef.current?.scrollLeft || 0);
-          }
-         
-        };
-        
-    const handleMouseUp = () => {
-          setIsDragging(false);
-        };
-        
-    const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if(scrollContainerRef.current){
-            if (!isDragging) return;
-          const x = e.clientX - scrollContainerRef.current?.offsetLeft;
-          const walk = (x - startX) * 2; // Уменьшаем чувствительность движения для более плавного скроллинга
-          scrollContainerRef.current!.scrollLeft = scrollLeftAtStart - walk;
-          setScrollLeftValue(scrollLeftAtStart - walk);
-          }
-          
-        };
-  
-      useEffect(()=> {
-          if(scrollContainerRef.current){
-              setScrollWidth(scrollContainerRef.current.scrollWidth)
-          }
-      },[scrollContainerRef.current])
-      
-      useEffect(() => {
-        const updateScreenWidth = () => {
-  
-          const width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-          setScreenWidth(width);
-        };
-        updateScreenWidth();
-        window.addEventListener('resize', updateScreenWidth);
-        return () => {
-          window.removeEventListener('resize', updateScreenWidth);
-        };
-       
-      }, []); 
   
     return (
         <div className='w-full h-[150px] xl:my-[32px] lg:my-[24px] flex md:my-[24px] md:pl-[20px] md:pr-[0px] md:h-[130px] 
@@ -127,35 +73,30 @@ export default function ChatBots () {
               <span className='vsm:inline text-heading-text-lite dark:text-heading-text-dark font-InterBold text-[16px] 
                                vsm:relative vsm:bottom-[20px] vsm:left-[22px]'>Чат с ботом профи :</span>
             </div>
-            <div className='w-[85%] h-[150px] flex overflow-x-auto vsm:w-[100%]'
-                 style={{ scrollBehavior: "smooth", overflowY: "hidden", scrollbarWidth: "thin",userSelect: "none"}}
-                 id="scrollContainer"  
-                 ref={scrollContainerRef}
-                 onMouseDown={handleMouseDown}
-                 onMouseUp={handleMouseUp}
-                 onMouseMove={handleMouseMove}
-                 
-                >
-            {
-            fakeRolesData.length 
-            && 
-            fakeRolesData.map((item,i) => {
-              const isLastElement = i === fakeRolesData.length - 1;
-              const marginRightStyleFull = isLastElement ? '0px' : '6.5px';
-                return (
-                <Image key={item.id} src={ theme === "light" ?  item.srcLite : theme === "dark" ? item.srcDark : "ss"} alt={item.id} className={`ml-[6.5px] mr-[${marginRightStyleFull}] cursor-pointer md:mx-[4px]`} 
-                       width={(screenWidth < 980) && (screenWidth > 549) ? 110 : screenWidth < 549 ? 100 : 124} 
-                       style={{height : (screenWidth < 980) && (screenWidth > 549) ? "132px" : screenWidth < 549 ? "120px" : "150px"}} draggable={false}/>
-         
-                )
-            }) 
-            }
-               
+            <div className="w-[100%] h-[150px] vsm:w-[100%]" style={{overflow : "hidden" }}>
+                <div onMouseLeave={dragStop} >
+                  <ScrollMenu
+                    RightArrow={CustomArrowChatBot}
+                    onMouseDown={() => dragStart}
+                    onMouseUp={() => dragStop}
+                    onMouseMove={handleDrag}
+                  >
+                  {
+                    fakeRolesData.map((item,i) => {
+                      const isLastElement = i === fakeRolesData.length - 1;
+                      const marginRightStyleFull = isLastElement ? '0px' : '6px';
+              
+                      return (
+                        <ChatBotCard src={ theme === "light" ?  item.srcLite : theme === "dark" ? item.srcDark : "ss"}  
+                                    itemId={i.toString()} mrFull={marginRightStyleFull}/>
+                      )
+                    })
+                  }
+                  </ScrollMenu>
+                </div>
             </div> 
-            <div className='xl:w-[60px] h-[145px] flex flex-col ml-[17px] bg-bg-lite dark:bg-bg-dark justify-between relative right-[5px] md:hidden'>
-                    <Icon icon='arrow-l-60' callBack={scrollLeft} isActive={scrollLeftValue > 0}/>
-                    <Icon icon='arrow-r-60' callBack={scrollRight} isActive={scrollLeftValue < scrollWidth}/>
-            </div>
       </div>
     )
 }
+
+

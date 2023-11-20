@@ -14,7 +14,8 @@ const buttonVariants = cva(
         defaultTempBtn : "border border-items-border-lite dark:border-items-border-dark text-template-item-text-default-lite dark:text-template-item-text-dark rounded-[12px] xl:font-TTNormsRegular lg:font-InterRegular xl:text-[14px] lg:text-[12px] font-[400] w-max px-[12px] py-[6px] hover:bg-[#fff] dark:hover:bg-[black] mr-[6px]",
         // defaultTempBtnGrowed : "border border-[#D0D5DD] rounded-[12px] font-TTNormsMedium text-[14px] text-[#2D384B] font-[400] w-max px-[9px] py-[6px] hover:bg-[#fff] flex-grow mr-[4px]",
         defaultTempArrowRight : "border-none rounded-[10px] hover:bg-white dark:hover:bg-black absolute top-[0px] right-[0px] bg-bg-lite dark:bg-bg-dark shadow-arrow-r-20-lite dark:shadow-arrow-r-20-dark", 
-        defaultTempArrowLeft : "border-none rounded-[10px] hover:bg-white dark:hover:bg-black absolute top-[0px] left-[0px] bg-bg-lite dark:bg-bg-dark shadow-arrow-r-20-lite dark:shadow-arrow-r-20-dark" , 
+        defaultTempArrowLeft : "border-none rounded-[10px] hover:bg-white dark:hover:bg-black absolute top-[0px] left-[0px] z-20 bg-bg-lite dark:bg-bg-dark shadow-arrow-r-20-lite dark:shadow-arrow-r-20-dark " ,
+        
         defaultSendInput : "ml-[8px]",
         outline:"rounded-[12px] border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900 dark:border-slate-800 dark:bg-slate-950 dark:hover:bg-slate-800 dark:hover:text-slate-50",
         secondary:"bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80",
