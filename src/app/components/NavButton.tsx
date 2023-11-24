@@ -1,14 +1,16 @@
+"use client"
 import { Button } from "@/components/ui/button"
 import Icon from "./Icon"
 
 type NavButtonPropsType = {
     activeBtn ?: string
-    callBack : (value : string) => void
+    callBack : (value : string ) => void
     title ?: string
     icon ?: string
     btnID ?: string
     component : string
     isNeedGrow ?: boolean
+    singleActiveBtn ?: boolean
 }
 
 export default function NavButton(props : NavButtonPropsType){
@@ -21,6 +23,7 @@ export default function NavButton(props : NavButtonPropsType){
                         onClick={()=>{props.callBack(props.icon ? props.icon : "")}}
                         className="md:flex md:flex-col"
                         >
+                     
                     <Icon icon={props.icon ? props.icon : ""} isActive={isActive}/>
                     {
                         props.icon === "templates" 
@@ -92,6 +95,52 @@ export default function NavButton(props : NavButtonPropsType){
                     <Icon icon={props.icon ? props.icon : ""}/>
                 </Button>
             )
+        case "newChat" :
+            return (
+                <Button variant={"searchTempBtn"} 
+                size="defaultNewChatBtn"
+                onClick={()=>{props.callBack(props.icon ? props.icon : "")}}
+                >
+                    <Icon icon={props.icon ? props.icon : ""} />
+                    <span className="">{props.title}</span>
+                </Button>
+            )
+        case "searchTempBtn" :
+            return (
+                <Button variant={"searchTempBtn"} 
+                size="defaultSearchTempBtn"
+                onClick={()=>{props.callBack(props.icon ? props.icon : "")}}
+                >
+                    <Icon icon={props.icon ? props.icon : ""} />
+                </Button>
+            )
+        case "favoriteTempBtn" :
+            return (
+                <Button variant={"favoriteTempBtn"} 
+                size="favoriteTempBtn"
+                onClick={()=>{props.callBack(props.icon ? props.icon : "")}}
+                >
+                    <Icon icon={props.icon ? props.icon : ""} />
+                    <span>{props.title}</span>
+                </Button>
+            )
+        case "llmBtn" : 
+                return (
+                    <Button variant={isActive ? 'activeToggleBtn' : 'defaultToggleBtn'} 
+                                size="toggleBtn"
+                                onClick={()=>props.callBack(props.btnID ? props.btnID : "")}>
+                        <span>{props.title}</span>
+                    </Button>
+                )
+        case "chatHeadingBtn" : 
+        return (
+            <Button variant={"chatHeadingBtn"} 
+            size="defaultChatHeadingBtn"
+            onClick={()=>props.callBack("")}
+            >
+                <Icon icon={props.icon ? props.icon : ""} isActive={props.singleActiveBtn}/>
+            </Button>
+        )
     }
     
 }

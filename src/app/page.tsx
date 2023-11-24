@@ -14,9 +14,6 @@ import { useTheme } from 'next-themes';
 
 
 export default function Home() {
-const {theme} = useTheme();
-console.log(theme)
-
   return (
     <main className="min-h-screen w-full flex flex-col items-center bg-bg-lite dark:bg-bg-dark ">
       <Header/>
@@ -25,7 +22,7 @@ console.log(theme)
         <MobileCategoriesPanel/>
         <Templates/>
         <ChatBots/>
-         <div className='w-full flex justify-between md:flex-col md:sm:flex-row md:mb-[150px] md:sm:mb-[0px] md:sm:vsm:hidden'>
+        <div className='w-full flex justify-between md:flex-col md:sm:flex-row md:mb-[150px] md:sm:mb-[0px] md:sm:vsm:hidden'>
           <TemplateCardSocial/>
           <TemplateCardCommercial/>
         </div>

@@ -49,3 +49,20 @@
 #scrollContainer::-webkit-scrollbar{
   display: none;
 }
+
+#historyBtn::before {
+    content: url('../../public/settingsMessage.svg'); 
+    position: absolute;
+    top: 53%;
+    right: 13px;
+    transform: translate(-50%, -50%);
+    opacity: 0; 
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  #historyBtn:hover::before {
+    opacity: 1;
+  }
+  /* #historyBtn:hover{
+    background-color: aqua;
+  } */
