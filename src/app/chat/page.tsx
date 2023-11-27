@@ -23,7 +23,7 @@ export default function Chat() {
     return (
         <main className="h-screen w-full flex flex-col items-center bg-bg-lite dark:bg-bg-dark ">
             <Header/>
-            <div className='w-full flex-grow flex'>
+            <div className='w-full h-full flex-grow flex'>
                 <LeftSideBar callBack={chooseRole}/>
                 <ChatSection currentRoleId={currentRoleId}/>
                 <RightSideBar/>

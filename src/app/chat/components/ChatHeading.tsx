@@ -17,7 +17,6 @@ export default function ChatHeading(props : ChatSectionPropsType) {
     let [currentRole, setCurrentRole] = useState<any>({ id : "consultant", src : consultantMini, title : "Личный консультант" });
     useEffect(()=> {
         let newCurrentRole = chatSectionRoles.filter(r => r.id === props.currentRoleId)
-        console.log(newCurrentRole[0])
         setCurrentRole(newCurrentRole[0])
     }, [props.currentRoleId])
     const chatSectionRoles = [

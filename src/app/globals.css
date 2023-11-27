@@ -45,11 +45,39 @@
     font-weight: 800;
   }
 }
-
+/* скролл для ролей на главной странице */
 #scrollContainer::-webkit-scrollbar{
   display: none;
 }
+/* скролл для ролей на главной странице */
 
+/* скрол для окна чата */
+#chatWindowLight::-webkit-scrollbar{
+  width: 6px;
+}
+#chatWindowLight::-webkit-scrollbar-thumb {
+  background-color: #EDF2F6;
+  border-radius: 10px;
+}
+#chatWindowLight::-webkit-scrollbar-track {
+  background-color: rgba(255, 255, 255, 0);
+  width: 10px;
+  padding: 0 5px;
+}
+
+#chatWindowDark::-webkit-scrollbar{
+  width: 6px;
+}
+#chatWindowDark::-webkit-scrollbar-thumb {
+  background-color: #17181C;
+  border-radius: 10px;
+}
+#chatWindowDark::-webkit-scrollbar-track {
+  background-color: rgba(23, 24, 28, 0);
+  width: 10px;
+  padding: 0 5px;
+}
+/* скрол для окна чата */
 #historyBtn::before {
     content: url('../../public/settingsMessage.svg'); 
     position: absolute;
@@ -59,7 +87,7 @@
     opacity: 0; 
     transition: opacity 0.3s ease-in-out;
   }
-  
+
   #historyBtn:hover::before {
     opacity: 1;
   }
