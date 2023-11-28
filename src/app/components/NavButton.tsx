@@ -141,6 +141,15 @@ export default function NavButton(props : NavButtonPropsType){
                 <Icon icon={props.icon ? props.icon : ""} isActive={props.singleActiveBtn}/>
             </Button>
         )
+        case "scrollToEnd" : 
+        return (
+            <Button variant={"scrollToEnd"} 
+            size="scrollToEnd"
+            onClick={()=>props.callBack("")}
+            >
+                <Icon icon={props.icon ? props.icon : ""}/>
+            </Button>
+        )
     }
     
 }

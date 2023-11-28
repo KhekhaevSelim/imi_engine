@@ -1,14 +1,6 @@
 import NavButton from "@/app/components/NavButton"
-import consultantMini from "../../../../public/consultantMini.png";
-import marketologMini from "../../../../public/marketologMini.png";
-import writerMini from "../../../../public/writerMini.png";
-import businessMini from "../../../../public/businessMini.png";
-import investorMini from "../../../../public/investorMini.png";
-import seoMini from "../../../../public/seoMini.png";
-import fitnesMini from "../../../../public/fitnesMini.png";
-import ChatBotMiniItem from "./ChatBotMiniItem";
 import WordsWidget from "./WordsWidget";
-import { StaticImageData } from "next/image";
+import RolesHalfDynamicWindow from "./RolesHalfDynamicWindow";
 
 
 type LeftSideBarPropsType = {
@@ -16,26 +8,8 @@ type LeftSideBarPropsType = {
 }
 
 export default function LeftSideBar(props : LeftSideBarPropsType) {
-    type FakeRolesMiniDataType = {
-        id : string
-        src : StaticImageData
-        title : string
-      }
-    const fakeRolesMiniData : Array<FakeRolesMiniDataType> = [
-        { id : "consultant", src : consultantMini, title : "Личный консультант" },
-        { id : "marketolog", src : marketologMini , title : "Маркетолог" },
-        { id : "writer", src : writerMini , title : "Писатель"},
-        { id : "business", src : businessMini, title : "Бизнес ангел"},
-        { id : "investor", src : investorMini, title : "Инвестор"},
-        { id : "seo", src : seoMini , title : "SEO специалист"},
-        { id : "fitnes", src : fitnesMini , title : "Фитнес специалист"},
-        // { id : "consultant", src : consultantMini,  title : "Личный консультант" },
-        // { id : "marketolog", src : marketologMini,  title : "Маркетолог"},
-        // { id : "writer", src : writerMini , title : "Писатель"},
-        // { id : "business", src : businessMini, title : "Бизнес ангел"},
-      ]
     return (
-        <div className="h-full w-[280px] xl:p-[20px] flex flex-col justify-between">
+        <div className="h-full w-[280px] xl:p-[20px] xl:pr-[10px] flex flex-col justify-between">
             <div className="h-full flex flex-col">
                 <div className="w-[280px] h-[44px] flex xl:mb-[24px]">
                     <NavButton title="Новый чат" icon="add" callBack={()=>{}} component="newChat"/>
@@ -46,13 +20,7 @@ export default function LeftSideBar(props : LeftSideBarPropsType) {
                     Роли
                 </span>
                 <div className="flex-grow"> 
-                    {
-                    fakeRolesMiniData.map(item => {
-                        return (
-                            <ChatBotMiniItem id={item.id} src={item.src} title={item.title} key={item.id} callBack={props.callBack}/>
-                        )
-                    })
-                    }
+                    <RolesHalfDynamicWindow callBack={props.callBack}/>
                 </div>
             </div>
             <WordsWidget/>

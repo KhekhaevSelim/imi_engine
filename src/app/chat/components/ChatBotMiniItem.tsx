@@ -1,8 +1,8 @@
 "use client"
 import Image, { StaticImageData } from "next/image";
-import { useEffect } from "react";
 
-type chatBotMiniItemPropsType = {
+
+export type chatBotMiniItemPropsType = {
     src : StaticImageData
     title : string
     callBack : (role : string) => void

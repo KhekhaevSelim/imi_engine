@@ -1,5 +1,5 @@
 
-type HistoryItemPropsType = {
+export type HistoryItemPropsType = {
     date : string
     requestMessages : Array<{id : string, role : string, requestMessage: string}>
 }
@@ -18,7 +18,7 @@ export default function HistoryItem(props : HistoryItemPropsType){
             {
                 props.requestMessages.map(d => {
                     return (
-                <button className="w-[234px] h-[52px] rounded-[12px] border border-items-border-lite dark:border-items-border-dark 
+                <button className="w-[225px] h-[52px] rounded-[12px] border border-items-border-lite dark:border-items-border-dark 
                                    flex flex-col justify-center px-[16px] overflow-hidden whitespace-no-wrap truncate mb-[8px] relative
                                    hover:bg-[#F9FAFB] dark:hover:bg-items-border-dark"
                                    key={d.id}

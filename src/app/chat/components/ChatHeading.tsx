@@ -12,6 +12,7 @@ import Icon from "@/app/components/Icon";
 
 type ChatSectionPropsType = {
     currentRoleId : string
+    callBack : () => void
 }
 export default function ChatHeading(props : ChatSectionPropsType) {
     let [currentRole, setCurrentRole] = useState<any>({ id : "consultant", src : consultantMini, title : "Личный консультант" });
@@ -53,7 +54,7 @@ export default function ChatHeading(props : ChatSectionPropsType) {
                     <NavButton callBack={chooseFavoriteChat} component="chatHeadingBtn" icon="favoriteChat" singleActiveBtn={favoriteChat}/>
                     <NavButton callBack={()=>{}} component="chatHeadingBtn" icon="downloadChat"/>
                     <NavButton callBack={()=>{}} component="chatHeadingBtn" icon="settingsChat"/>
-                    <NavButton callBack={()=>{}} component="chatHeadingBtn" icon="fullWidthChat"/>
+                    <NavButton callBack={()=>props.callBack()} component="chatHeadingBtn" icon="fullWidthChat"/>
                 </div>
             </div>
         </div>

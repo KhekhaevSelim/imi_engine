@@ -1,20 +1,16 @@
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import AiMessage from './AiMessage';
 import MyMessage from './MyMessage';
 import { useTheme } from 'next-themes';
+import NavButton from '@/app/components/NavButton';
 
 export default function ChatDynamicWindow() {
     const parentRef = useRef<HTMLDivElement>(null)
-    // const [maxRange, setMaxRange] = useState<number>(0);
-    // useLayoutEffect(()=>{
-    //     let maxRange = virtualizer.range;
-    //     if(maxRange){
-    //         setMaxRange(maxRange.endIndex)
-    //     }
-       
-    // }, [])
     const {theme} = useTheme();
+    const [scrollContainerHeight, setScrollContainerHeight] = useState<number>(0);
+    const [scrollTop, setScrollTop] = useState<number>(0);
+    const [showScrollToEnd, setShowScrollToEnd] = useState<boolean>(false);
     const sentences =  [
         {id : "1", send : "llm", title : "я ИИ генерирую что по-кайфу, пишу код лучше стажера"},
         {id : "2", send : "i", title : "и чо, покажешь как сделать контроллируемый инпут, и чо, покажешь как сделать контроллируемый инпут, и чо, покажешь как сделать контроллируемый инпут и чо, покажешь как сделать контроллируемый инпут и чо, покажешь как сделать контроллируемый инпут ?"},
@@ -30,7 +26,6 @@ export default function ChatDynamicWindow() {
         {id : "4", send : "i", title : "нет, простой контроллируемый инпут можешь показать ?"},
         {id : "5", send : "llm", title : "нет, я покажу тебе как вывести в консоль 'hello world' - 'console.log('hello world')'"},
         {id : "6", send : "i", title : "супер."},
-        
     ]
     const count = sentences.length
     const virtualizer = useVirtualizer({
@@ -39,13 +34,41 @@ export default function ChatDynamicWindow() {
       estimateSize: () => 45,
     })
   
-    const items = virtualizer.getVirtualItems()
-    // console.log(virtualizer.range)
-    // onClick={() => {
-    //     virtualizer.scrollToIndex(count - 1)
-    //   }}
+    const items = virtualizer.getVirtualItems();
+
+    const scrollToEnd = () => {
+        virtualizer.scrollToIndex(sentences.length - 1);
+    }
+
+    const checkShowScrollToEnd = () => {
+        return (scrollContainerHeight - scrollTop) > 260
+    }
+
+    useEffect(()=> {
+        if(parentRef.current){
+            setScrollContainerHeight(parentRef.current.getBoundingClientRect().height)
+        }
+        
+        let timerId : NodeJS.Timeout | number ;
+        timerId = setTimeout(()=> {
+            scrollToEnd()
+        }, 200) ;
+
+        return () => clearTimeout(timerId);
+    },[]);
+
+    useEffect(()=> {
+        if(parentRef.current){
+            let newScrollTop =  parentRef.current.scrollTop;
+            setScrollTop(newScrollTop)
+        }
+        setShowScrollToEnd(checkShowScrollToEnd)
+        
+    })
+
+    
     return (
-      <div className='w-full h-full'>
+      <div className='w-full h-[full]'>
         <div
           ref={parentRef}
           className="List"
@@ -93,8 +116,9 @@ export default function ChatDynamicWindow() {
               ))}
             </div>
           </div>
-          {/* {maxRange && <span>вниз</span>} */}
+          
         </div>
+        {showScrollToEnd && <NavButton component='scrollToEnd' icon='scrollToEnd' callBack={()=>scrollToEnd()}/>}
       </div>
     )
   }

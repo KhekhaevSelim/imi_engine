@@ -78,6 +78,38 @@
   padding: 0 5px;
 }
 /* скрол для окна чата */
+
+/* скрол для окна историй чата */
+#historyWindowLight::-webkit-scrollbar{
+  width: 6px;
+}
+#historyWindowLight::-webkit-scrollbar-thumb {
+  background-color: #DAE3E9;
+  border-radius: 10px;
+}
+#historyWindowLight::-webkit-scrollbar-track {
+  background-color: rgba(#EDF2F6, 0);
+  width: 8px;
+  padding-left: 5px;
+}
+
+#historyWindowDark::-webkit-scrollbar{
+  width: 6px;
+}
+#historyWindowDark::-webkit-scrollbar-thumb {
+  background-color: #21242C;
+  border-radius: 10px;
+}
+#historyWindowDark::-webkit-scrollbar-track {
+  background-color: rgba(23, 24, 28, 0);
+  width: 10px;
+  padding-left: 5px;
+}
+/* скрол для окна историй чата */
+
+
+
+
 #historyBtn::before {
     content: url('../../public/settingsMessage.svg'); 
     position: absolute;
