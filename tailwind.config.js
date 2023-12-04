@@ -58,6 +58,7 @@ module.exports = {
       "arrow-r-20-lite" : "0px 0px 9px 13px #EDF2F6",
       "arrow-r-20-dark" : "0px 0px 9px 13px #17181C",
       "chat-items" : "0px 0px 9px 13px #EDF2F6",
+      "tempGenerateInput" : "0px 0px 9px 0px rgba(11, 59, 236, 0.62)",
     },
     extend: {
       fontFamily : {

@@ -133,23 +133,60 @@ export default function NavButton(props : NavButtonPropsType){
                     </Button>
                 )
         case "chatHeadingBtn" : 
-        return (
-            <Button variant={"chatHeadingBtn"} 
-            size="defaultChatHeadingBtn"
-            onClick={()=>props.callBack("")}
-            >
-                <Icon icon={props.icon ? props.icon : ""} isActive={props.singleActiveBtn}/>
-            </Button>
-        )
+            return (
+                <Button variant={"chatHeadingBtn"} 
+                size="defaultChatHeadingBtn"
+                onClick={()=>props.callBack("")}
+                >
+                    <Icon icon={props.icon ? props.icon : ""} isActive={props.singleActiveBtn}/>
+                </Button>
+            )
         case "scrollToEnd" : 
-        return (
-            <Button variant={"scrollToEnd"} 
-            size="scrollToEnd"
-            onClick={()=>props.callBack("")}
-            >
-                <Icon icon={props.icon ? props.icon : ""}/>
-            </Button>
-        )
+            return (
+                <Button variant={"scrollToEnd"} 
+                size="scrollToEnd"
+                onClick={()=>props.callBack("")}
+                >
+                    <Icon icon={props.icon ? props.icon : ""}/>
+                </Button>
+            )
+        case "back" :
+            return (
+                <Button variant={"back"} 
+                size="back"
+                onClick={()=>props.callBack("")}
+                >
+                    <Icon icon={props.icon ? props.icon : ""}/>
+                </Button>
+            )
+        case "TempBtnInTempsPage" :
+            return (
+                    <Button variant={"TempBtnInTempsPage"} 
+                    size="TempBtnInTempsPage"
+                    onClick={()=>{props.callBack(props.icon ? props.icon : "")}}
+                    >
+                        <Icon icon={props.icon ? props.icon : ""} />
+                        <span>{props.title}</span>
+                    </Button>
+            )
+        case "tempSubPageBtn" :
+            return (
+                <Button variant={isActive ? "activeTempSubPageBtn" : "defaultTempSubPageBtn"} 
+                size="tempSubPageBtn"
+                onClick={()=>props.callBack(props.btnID ? props.btnID : "")}
+                >
+                    <span>{props.title}</span>
+                </Button>
+            )
+        case "tempSidebarInfo" : 
+            return (
+                <Button variant={"tempSidebarInfo"} 
+                size="tempSidebarInfo"
+                onClick={()=>props.callBack(props.btnID ? props.btnID : "")}
+                >
+                    <Icon icon="tempSidebarInfo" />
+                </Button>
+            )
     }
     
 }

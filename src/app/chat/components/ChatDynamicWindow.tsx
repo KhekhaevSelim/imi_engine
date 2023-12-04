@@ -1,5 +1,5 @@
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AiMessage from './AiMessage';
 import MyMessage from './MyMessage';
 import { useTheme } from 'next-themes';

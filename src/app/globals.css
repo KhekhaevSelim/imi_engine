@@ -45,11 +45,48 @@
     font-weight: 800;
   }
 }
+
+/* горизонатальный скролл шаблонов на странице шаблонов */
+.scrollContainer::-webkit-scrollbar{
+  display: none;
+}
+/* горизонатальный скролл шаблонов на странице шаблонов */
+
+
 /* скролл для ролей на главной странице */
 #scrollContainer::-webkit-scrollbar{
   display: none;
 }
 /* скролл для ролей на главной странице */
+
+
+/* скрол для сайдбара на странице шаблонов */
+#sideBarScrollContainerLight::-webkit-scrollbar{
+  width: 6px;
+}
+#sideBarScrollContainerLight::-webkit-scrollbar-thumb {
+  background-color: #DAE3E9;
+  border-radius: 10px;
+}
+#sideBarScrollContainerLight::-webkit-scrollbar-track {
+  background-color: rgba(0, 0, 0,);
+  width: 5px;
+}
+
+#sideBarScrollContainerDark::-webkit-scrollbar{
+  width: 6px;
+}
+#sideBarScrollContainerDark::-webkit-scrollbar-thumb {
+  background-color: #21242C;
+  border-radius: 10px;
+}
+#sideBarScrollContainerDark::-webkit-scrollbar-track {
+  background-color: rgba(23, 24, 28, 0);
+  width: 5px;
+}
+
+/* скрол для сайдбара на странице шаблонов */
+
 
 /* скрол для окна чата */
 #chatWindowLight::-webkit-scrollbar{
@@ -126,3 +163,15 @@
   /* #historyBtn:hover{
     background-color: aqua;
   } */
+
+
+/* инпут настройки шаблонов в сайдбаре */
+
+#tempVariantsInput::-webkit-inner-spin-button,
+#tempVariantsInput::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+/* инпут настройки шаблонов в сайдбаре */
+  
